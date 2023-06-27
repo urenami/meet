@@ -1,1 +1,2 @@
 # meet
+Welcome to my meet app this is a serverless, progressive web application with wreact using a test driven development technique. The application uses the google calendar API to fetch upcoming events.

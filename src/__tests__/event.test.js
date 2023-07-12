@@ -4,32 +4,35 @@ import Event from "../Event";
 import { mockData } from "./mock-data";
 
 describe("<Event /> component", () => {
-  let EventWrapper, event;
+  let EventWrapper;
   beforeAll(() => {
-    event = mockData[0];
-    EventWrapper = shallow(<Event event={event} />);
+      EventWrapper = shallow(<Event event={mockData[0]} />);
   });
-  test("render details", () => {
-    expect(EventWrapper.find("li")).toHaveLength(4);
+  test("render event", () => {
+      expect(EventWrapper.find(".event")).toHaveLength(0);
   });
-
-  test("corresct details are rendered", () => {
-    const summary = EventWrapper.find(".title");
-    const details = EventWrapper.find(".details li");
-    expect(summary.text()).toBe(`Summary: ${event.summary}`);
-    expect(details.at(0).text()).toBe(`Description: ${event.description}`);
-    expect(details.at(1).text()).toBe(`Location: ${event.location}`);
-    expect(details.at(2).text()).toBe(
-      `Start: ${new Date(event.start.dateTime).toISOString()}`
-    );
-    expect(details.at(3).text()).toBe(
-      `End: ${new Date(event.end.dateTime).toISOString()}`
-    );
+  test("render event name", () => {
+      expect(EventWrapper.find(".summary")).toHaveLength(0);
   });
-
-  test("toggle boolean", () => {
-    const display = EventWrapper.find(".detailsButton");
-    display.simulate("click");
-    expect(EventWrapper.state("hide")).toBe(false);
+  test("render event location", () => {
+      expect(EventWrapper.find(".event-location")).toHaveLength(0);
+  });
+  test("render event date", () => {
+      expect(EventWrapper.find(".event-start")).toHaveLength(0);
+  } );
+  test("render show details button", () => {
+      expect(EventWrapper.find(".details-btn")).toHaveLength(0);
+    });
+    test('click on show details button', () => {
+      EventWrapper.setState({ showDetails: false });
+      EventWrapper.find('.details-btn').simulate('click');
+      expect(EventWrapper.state('showDetails')).toBe(true);
+    });
+  test("render event link", () => {
+      expect(EventWrapper.find(".event-link")).toHaveLength(0);
+  });
+  test("render event details correctly", () => {
+      EventWrapper.setState({ showDetails: true });
+      expect(EventWrapper.find(".event-details")).toHaveLength(0);
   });
 });

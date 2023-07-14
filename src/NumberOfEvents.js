@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
-  state = { noe: 10 }
 
-  componentDidMount() {
-    this.setState({ noe: this.props.noe || 10 });
-  }
+    state = {
+        query: 32,
+    }
 
-  changeNOE(value) {
-    this.setState({ noe: value })
-  }
+    handleInputChanged = (event) => {
+        const value = event.target.value;
+        this.setState({ 
+            query: value,
+        });
+    };
 
   render() {
-    const { noe } = this.state;
     return (
-    <div className="NumberOfEvents">
-        <h3>Number of Events:</h3>
+      <div className='numberOfEvents'>
+        <label className='numberOfEventsLabel'>Number of Events: </label>
         <input
-          className="noe-input"
-          type="number"
-          value={noe}
-          onChange={event => {
-            this.changeNOE(event.target.value);
-          }}
-        >
-        </input>
-    </div>
-    )
+            type='number'
+            className='numberOfEventsInput'
+            value={this.state.query}
+            onChange={this.handleInputChanged}
+        />
+      </div>
+    );
   }
-
 }
 
 export default NumberOfEvents;

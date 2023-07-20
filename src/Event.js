@@ -1,5 +1,3 @@
-// src/Event.js
-
 import React, { Component } from "react";
 
 class Event extends Component {
@@ -9,6 +7,7 @@ class Event extends Component {
       collapsed: !prevState.collapsed,
     }));
   };
+
   render() {
     const { event } = this.props;
     const { collapsed } = this.state;

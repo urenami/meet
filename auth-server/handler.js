@@ -49,7 +49,7 @@ module.exports.getAccessToken = async (event) => {
     client_secret,
     redirect_uris[0]
   );
-  const code = decodeURIComponent(`${event.pathParameters.code}`);
+  const code = decodeURIComponent(`${event.pathParameters.access_token}`);
   return new Promise((resolve, reject) => {
     oAuth2Client.getToken(code, (err, token) => {
       if (err) {
@@ -129,4 +129,9 @@ module.exports.getCalendarEvents = async (event) => {
         body: JSON.stringify(err),
       };
     });
-  };
+};
+
+//URL endpoints
+//GET- https://ljhyfvu08a.execute-api.us-east-2.amazonaws.com/dev/api/token/{code}
+//GET- https://ljhyfvu08a.execute-api.us-east-2.amazonaws.com/dev/api/get-events/{access_token}
+//GET- https://ljhyfvu08a.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url

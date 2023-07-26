@@ -37,7 +37,16 @@ input[type="number"] {
 }
 
 .city {
-  width: 250px;
+  width: 250px; 
+  margin: 0 auto;
+}
+
+.city::before {
+  content: 'City';
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .CitySearch {
@@ -117,7 +126,14 @@ input[type="number"] {
 .numberOfEvents {
   width: 200px;
   margin: 20px auto;
-  text-align: center;
+} 
+
+.numberOfEvents::before {
+  content: 'Number of Events';
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .button-wrapper {

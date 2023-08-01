@@ -6,22 +6,33 @@ import NumberOfEvents from "./NumberOfEvents";
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
 
+
 class App extends Component {
   state = {
     events: [],
     locations: [],
     seletedLocation: 'all',
-    numberOfEvents: 32
-  };
+    numberOfEvents: 32,
+    errorText: "",
+  }
 
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-      this.setState({ events, locations: extractLocations(events) });
+      this.setState({ events: events, locations: extractLocations(events) });
       }
     });
   }
+
+  offlineWarning = () => {
+    if (!navigator.online){
+      this.setState({
+        errorText: 'You are offline, information may not be up to date.'
+      })
+    }
+  }
+
   componentWillUnmount(){
     this.mounted = false;
   }
@@ -63,9 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>City Search</div>
         <CitySearch  locations={this.state.locations} updateEvents={this.updateEvents} />
-        <div>Number Of Events</div>
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
         

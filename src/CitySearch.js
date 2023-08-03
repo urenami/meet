@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { InfoAlert } from "./Alert";
 
 class CitySearch extends Component {
-  constructor() {
-    super();
-    this.state = {
-      query: "",
-      suggestions: [],
-      showSuggestions: undefined,
-      infotext: "",
-    };
-  }
+  state = {
+    query: '',
+    suggestions: [],
+    showSuggestions: false,
+    infoText: '',
+  };
 
   handleInputChanged = (event) => {
     const value = event.target.value;
@@ -19,16 +16,15 @@ class CitySearch extends Component {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
     if (suggestions.length === 0) {
-      this.setState({
-        query: value,
-        infoText:
-          "We can not find the city you are looking for. Please try another city",
-      });
+    this.setState({
+      query: value,
+      infoText: 'We can not find the city you are looking for. Please try another city',
+    });
     } else {
       return this.setState({
         query: value,
         suggestions,
-        infoText: "",
+        infoText: '',
       });
     }
   };
@@ -37,28 +33,28 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion,
       showSuggestions: false,
+      infoText: '',
     });
+
     this.props.updateEvents(suggestion);
   };
-
   render() {
     return (
-      <div className="CitySearch">
-        <label className="city-label">City:</label>
+      <div className='CitySearch'>
         <InfoAlert text={this.state.infoText} />
         <input
-          type="text"
-          className="city"
+          placeholder='Search for a city'
+          type='text'
+          className='city'
           value={this.state.query}
           onChange={this.handleInputChanged}
           onFocus={() => {
             this.setState({ showSuggestions: true });
           }}
         />
-
         <ul
-          className="suggestions"
-          style={this.state.showSuggestions ? {} : { display: "none" }}
+          className='suggestions'
+          style={this.state.showSuggestions ? {} : { display: 'none' }}
         >
           {this.state.suggestions.map((suggestion) => (
             <li
@@ -68,7 +64,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li onClick={() => this.handleItemClicked("all")}>
+          <li onClick={() => this.handleItemClicked('all')}>
             <b>See all cities</b>
           </li>
         </ul>
@@ -76,5 +72,4 @@ class CitySearch extends Component {
     );
   }
 }
-
 export default CitySearch;

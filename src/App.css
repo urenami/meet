@@ -1,31 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+
+html {
+  background-color: white;
+}
 .App {
   text-align: center;
   padding: 2% 5%;
+  font-family: 'Montserrat', sans-serif;
+  
 }
-
 .App * {
   box-sizing: border-box;
 }
-
 ul {
   padding: 0;
   list-style: none;
 }
-
 p {
   margin: 5px 0;
 }
-
 .display-none {
   display: none;
 }
 .showSuggestions {
   display: block;
 }
-
-input[type="text"],
-input[type="number"] {
+input[type='text'],
+input[type='number'] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
@@ -34,21 +35,18 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  margin-top: 10px;
 }
-
+.logo {
+  height: 15.5rem;
+  padding: 0;
+  margin: 1.5rem 0;
+  border: 3px solid #f2f2f2;
+  border-radius: 5%;
+}
 .city {
-  width: 250px; 
-  margin: 0 auto;
+  width: 250px;
 }
-
-.city::before {
-  content: 'City';
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
 .CitySearch {
   display: flex;
   flex-direction: column;
@@ -56,7 +54,7 @@ input[type="number"] {
   max-width: 300px;
   margin: auto;
   position: relative;
-  margin-bottom: 25px;
+  align-items: center;
 }
 
 .suggestions {
@@ -69,23 +67,19 @@ input[type="number"] {
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
-
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
   background-color: #eee;
   cursor: default;
 }
-
 .suggestions > li:last-child {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
 .suggestions > li:hover {
   background-color: #bcdcdb;
 }
-
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
@@ -93,8 +87,8 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  background-color: #F2F2f2;
 }
-
 .details-btn {
   position: absolute;
   right: 5px;
@@ -104,39 +98,30 @@ input[type="number"] {
   outline: none;
   cursor: pointer;
 }
-
 .name {
   font-size: 18px;
   font-weight: 600;
 }
-
 .group-name {
   text-transform: uppercase;
   font-size: 14px;
 }
-
 .going,
 .visibility {
   font-style: italic;
 }
-
 .description {
   overflow-x: hidden;
 }
-
-.numberOfEvents {
+.number-of-events {
   width: 200px;
   margin: 20px auto;
-} 
-
-.numberOfEvents::before {
-  content: 'Number of Events';
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
+  text-align: center;
 }
-
+.number-of-events-label {
+  font-weight: 600;
+  color: white;
+}
 .button-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -147,7 +132,7 @@ input[type="number"] {
 
 .Alert {
   position: fixed;
-  top: 20px;
+  top: 0.5rem;
 }
 
 .data-vis-wrapper {
@@ -162,7 +147,6 @@ input[type="number"] {
 .recharts-surface {
   overflow: visible;
 }
-
 .login-button {
   color: #494949;
   text-transform: uppercase;
@@ -175,7 +159,6 @@ input[type="number"] {
   min-width: 10rem;
   margin: 1rem;
 }
-
 .google-btn {
   width: 184px;
   height: 42px;
@@ -184,12 +167,15 @@ input[type="number"] {
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
 .google-btn:hover {
   box-shadow: 0 0 6px #4285f4;
 }
+
 .google-btn:active {
   background: #1669f2;
 }
+
 .google-icon-wrapper {
   position: absolute;
   margin-top: 1px;
@@ -212,17 +198,12 @@ input[type="number"] {
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
-  font-family: "Roboto";
+  font-family: 'Montserrat', sans-serif;
 }
-
-
-
-
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
   }
-  
   .data-vis-wrapper .recharts-responsive-container {
     flex-basis: 50%;
     max-width: 50%;

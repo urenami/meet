@@ -4,11 +4,17 @@ class Alert extends Component {
   constructor(props) {
     super(props);
     this.color = null;
+    this.bgColor = null;
   }
 
   getStyle = () => {
     return {
       color: this.color,
+      borderWidth: "2px",
+      borderStyle: "solid",
+      fontWeight: "bolder",
+      borderRadius: "7px",
+      borderColor: this.color,
     };
   };
 

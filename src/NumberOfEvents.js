@@ -32,9 +32,10 @@ class NumberOfEvents extends Component {
       <div className="NumberOfEvents">
         <label className="number-label">Number of Events:</label>
         <input
-          id="number-of-events"
           type="number"
-          className="number"
+          className="numberOfEvents"
+          min={1}
+          max={32}
           value={this.state.number}
           onChange={this.handleNumberChange}
         />

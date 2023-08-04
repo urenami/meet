@@ -3,10 +3,10 @@ import { InfoAlert } from "./Alert";
 
 class CitySearch extends Component {
   state = {
-    query: '',
+    query: "",
     suggestions: [],
     showSuggestions: false,
-    infoText: '',
+    infoText: "",
   };
 
   handleInputChanged = (event) => {
@@ -26,7 +26,7 @@ class CitySearch extends Component {
 
       this.setState({
         query: value,
-        suggestions:
+        suggestions,
         infoText,
       });
     }
@@ -36,28 +36,28 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion,
       showSuggestions: false,
-      infoText: '',
+      infoText: "",
     });
 
     this.props.updateEvents(suggestion);
   };
   render() {
     return (
-      <div className='CitySearch'>
+      <div className="CitySearch">
         <InfoAlert text={this.state.infoText} />
         <input
-          placeholder='Search for a city'
-          type='text'
-          className='city'
+          placeholder="Search for a city"
+          type="text"
+          className="city"
           value={this.state.query}
           onChange={this.handleInputChanged}
           onFocus={() => {
-            this.setState({ showSuggestions: true });
+            this.setState({ showSuggestions: false });
           }}
         />
         <ul
-          className='suggestions'
-          style={this.state.showSuggestions ? {} : { display: 'none' }}
+          className="suggestions"
+          style={this.state.showSuggestions ? {} : { display: "none" }}
         >
           {this.state.suggestions.map((suggestion) => (
             <li
@@ -67,7 +67,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li onClick={() => this.handleItemClicked('all')}>
+          <li onClick={() => this.handleItemClicked("all")}>
             <b>See all cities</b>
           </li>
         </ul>

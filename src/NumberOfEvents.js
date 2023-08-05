@@ -12,17 +12,16 @@ class NumberOfEvents extends Component {
 
   handleNumberChange = (event) => {
     const value = event.target.value;
-    if (value >= 1 || value <= 32) {
+    if (value >= 1 && value <= 32) {
       this.setState({
         query: value,
         errorText: "",
       });
       this.props.updateEvents(this.props.selectedCity, value);
-    }
-    if (value < 0 || value > 32) {
+    } else {
       this.setState({
         query: value,
-        errorText: "Please enter a valid number",
+        errorText: "Please enter a valid number between 1 and 32",
       });
     }
   };
@@ -36,10 +35,12 @@ class NumberOfEvents extends Component {
           className="numberOfEvents"
           min={1}
           max={32}
-          value={this.state.number}
+          value={this.state.query}
           onChange={this.handleNumberChange}
         />
-        <ErrorAlert className="errorMessage" text={this.state.errorText} />
+        {this.state.errorText && (
+          <ErrorAlert className="errorMessage" text={this.state.errorText} />
+        )}
       </div>
     );
   }

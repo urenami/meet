@@ -78,6 +78,13 @@ export const extractLocations = (events) => {
           return mockData;
         }
 
+        if (!navigator.onLine) {
+          const data = localStorage.getItem("lastEvents");
+          NProgress.done();
+          return data?JSON.parse(data).events:[];;
+        }
+
+
 
         const token = await getAccessToken();
 

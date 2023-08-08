@@ -19,13 +19,11 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    const response = await fetch(url);
-    const result = await response.json();
-    if (result) {
-      NProgress.done();
-      localStorage.setItem("lastEvents", JSON.stringify(result.events));
-      return result.events;
-    } else return null;
+    getEvents().then((events) => {
+      if (this.mounted) {
+      this.setState({ events: events, locations: extractLocations(events) });
+      }
+    });
   }
 
   offlineWarning = () => {

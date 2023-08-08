@@ -19,20 +19,41 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-      this.setState({ events: events, locations: extractLocations(events) });
-      }
-    });
-  }
-
-  offlineWarning = () => {
-    if (!navigator.online){
-      this.setState({
-        errorText: 'You are offline, information may not be up to date.'
-      })
+    const cachedEvents = localStorage.getItem("cachedEvents");
+    
+    if (!cachedEvents) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events: events, locations: extractLocations(events) });
+          localStorage.setItem("cachedEvents", JSON.stringify(events));
+        }
+      });
+    } else {
+      this.setState({ events: JSON.parse(cachedEvents), locations: extractLocations(JSON.parse(cachedEvents)) });
     }
   }
+  
+  offlineWarning = () => {
+    if (!navigator.onLine) {
+      const cachedEvents = localStorage.getItem("cachedEvents");
+      if (cachedEvents) {
+        this.setState({
+          events: JSON.parse(cachedEvents),
+          errorText: 'You are offline. Displaying cached events.',
+        });
+      } else {
+        this.setState({
+          errorText: 'You are offline. No cached events available.',
+        });
+      }
+    }
+  }
+  
+  clearCachedEvents = () => {
+    localStorage.removeItem("cachedEvents");
+    this.setState({ events: [], errorText: '' }); // Clear events and errorText
+  }
+  
 
   componentWillUnmount(){
     this.mounted = false;

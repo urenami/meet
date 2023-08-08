@@ -49,12 +49,6 @@ class App extends Component {
     }
   }
   
-  clearCachedEvents = () => {
-    localStorage.removeItem("cachedEvents");
-    this.setState({ events: [], errorText: '' }); // Clear events and errorText
-  }
-  
-
   componentWillUnmount(){
     this.mounted = false;
   }
@@ -98,10 +92,9 @@ class App extends Component {
   
     return (
       <div className="App">
-        {errorText && <WarningAlert text={errorText} />}
+        {!navigator.onLine && errorText && <WarningAlert text={errorText} />}
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
-        <button onClick={this.clearCachedEvents}>Clear Cached Events</button>
         <EventList events={this.state.events} />
       </div>
     );

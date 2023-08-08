@@ -94,15 +94,17 @@ class App extends Component {
   }
 
   render() {
+    const { errorText } = this.state;
+  
     return (
       <div className="App">
-         <WarningAlert text={this.state.errorText} />
-        <CitySearch  locations={this.state.locations} updateEvents={this.updateEvents} />
+        {errorText && <WarningAlert text={errorText} />}
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
+        <button onClick={this.clearCachedEvents}>Clear Cached Events</button>
         <EventList events={this.state.events} />
-        
       </div>
     );
-  }
+  }  
 }
 export default App;

@@ -3,7 +3,7 @@ import "./App.css";
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from "./NumberOfEvents";
-import { getEvents, extractLocations } from './api';
+import { getEvents, extractLocations, } from './api';
 import './nprogress.css';
 import { WarningAlert } from './Alert';
 
@@ -17,13 +17,15 @@ class App extends Component {
     errorText: "",
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-      this.setState({ events: events, locations: extractLocations(events) });
-      }
-    });
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      NProgress.done();
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
+      return result.events;
+    } else return null;
   }
 
   offlineWarning = () => {

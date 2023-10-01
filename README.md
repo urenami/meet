@@ -82,3 +82,7 @@ Similar to Feature 1, a serverless function will be used to handle the logic of 
 To enable offline functionality, the app will use caching as well as local storage to keep the app running offline
 **Feature 5:** Data Visualization
 For data visualization, the app will use serverless functions to generate the chart data. When the user requests the chart, the frontend can trigger a serverless function that fetches the necessary data from the API, perform any required calculations and returns the processed data to the frontend. 
+
+## Link to hosted project
+
+https://urenami.github.io/meet/
